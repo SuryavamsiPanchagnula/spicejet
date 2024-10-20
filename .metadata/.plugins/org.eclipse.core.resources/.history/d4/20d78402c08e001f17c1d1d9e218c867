@@ -1,0 +1,95 @@
+package pages;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import base.basepage;
+public class signup extends basepage {
+
+	@FindBy(xpath="//div[contains(text(),'Signup')]") private WebElement Signuplink;
+	
+	@FindBy(xpath="//select[@class='form-control form-select ']//option[@value='MR']") private WebElement title;
+	
+	@FindBy(id="first_name") private WebElement firstname;
+	
+	@FindBy(id="last_name") private WebElement lastname;
+	
+	@FindBy(xpath ="//div[@class='col-sm-6 mt-30 px-sm-4']//select[@class='form-control form-select']//option[@value='IN']") 
+	private WebElement select_country;
+	
+	@FindBy(xpath ="//img[@alt='date']") private WebElement calendar;
+	
+	@FindBy(xpath ="//select[@class='react-datepicker__month-select']//option[@value='6']") private WebElement month;
+	
+	@FindBy(xpath = "//select[@class='react-datepicker__year-select']//option[@value='2000']") private WebElement year;
+	
+	@FindBy(xpath="//div[@class='react-datepicker__week']//div[@class='react-datepicker__day react-datepicker__day--009 react-datepicker__day--weekend']")
+	private WebElement date;
+	
+	@FindBy(xpath ="//input[@type='tel']") private WebElement phone;
+	
+	@FindBy(id ="email_id") private WebElement email;
+	
+	@FindBy(id="new-password") private WebElement password;
+	
+	@FindBy(id ="c-password") private WebElement confirmpassword;
+	
+	@FindBy(id= "defaultCheck1") private WebElement agree;
+	
+	@FindBy(xpath ="//div[@class=' mt-40 px-sm-4 col-auto']//button[@class='btn btn-red']") private WebElement submit;
+	
+	@FindBy(xpath ="//label[contains(text(),'OTP Verification')]") 
+	private WebElement confirmationtext;
+	
+	@FindBy(className ="btn btn-red plr-50") private WebElement Verify;
+	
+	@FindBy(className ="font-13 mt-10 inlineErrors") private WebElement error;
+	
+	
+	public String confirmationtext() {
+		return confirmationtext.getText();
+	}
+	
+	public String signuperror() {
+		return error.getText();
+	}
+	
+	public void valid_signup() {
+		wait(Signuplink);
+		Signuplink.click();
+		switchtochildwindow();
+		wait(title);
+		selectFromDropdown(title,"Mr");
+		firstname.sendKeys("testing");
+		lastname.sendKeys("user");
+		scroll();
+		selectFromDropdown(select_country,"India ");
+		calendar.click();
+		selectFromDropdown(month,"July");
+		selectFromDropdown(month,"2000");
+		date.click();
+		phone.sendKeys("1212121212");
+		email.click();
+		email.sendKeys("psuryavamsi89@gmail.com");
+		wait(password);
+		password.sendKeys("Vamsi20");
+		confirmpassword.sendKeys("Vamsi20");
+		agree.click();
+		Verify.click();	
+	}
+	
+	public void invalid_signup() {
+		
+		Signuplink.click();
+		scroll();
+		agree.click();
+		Verify.click();
+	}
+	
+	public boolean isPasswordEncrypted() {
+		return password.getAttribute("type").equals("password");
+	}
+	public signup(){
+		PageFactory.initElements(driver, this);
+	}
+}

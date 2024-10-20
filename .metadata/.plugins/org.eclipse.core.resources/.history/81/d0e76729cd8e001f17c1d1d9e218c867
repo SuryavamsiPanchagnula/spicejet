@@ -1,0 +1,145 @@
+package pages;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import base.basepage;
+
+public class search_flight extends basepage {
+	
+	@FindBy(xpath ="//div[contains(text(),'check-in')]") private WebElement checkin;
+	
+	@FindBy(xpath ="//div[contains(text(),'flight status')]") private WebElement flight_status;
+	
+	@FindBy(xpath ="//div[@data-testid='manage booking-horizontal-nav-tabs']") private WebElement manage_booking;
+	
+	@FindBy(xpath = "(//input[@type='text'])[1]")
+	private WebElement from_city;
+
+	@FindBy(xpath = "(//input[@type='text'])[2]")
+	private WebElement to_city;
+	
+	@FindBy(xpath ="//div[@data-testid='one-way-radio-button']")
+	private WebElement oneway_trip;
+	
+	@FindBy(xpath ="//div[@data-testid='round-trip-radio-button']")
+	private WebElement round_trip;
+	
+	@FindBy(xpath ="//div[contains(text(),'Departure Date')]")
+	private WebElement departure;
+	
+	@FindBy(xpath = "//div[@data-testid='undefined-month-November-2024']//div[@data-testid='undefined-calendar-day-15']")
+	private WebElement departure_date;
+	
+	@FindBy(xpath="//div[contains(text(),'Return Date')]")
+	private WebElement returnback;
+	
+	@FindBy(xpath ="//div[@data-testid='undefined-month-November-2024']//div[@data-testid='undefined-calendar-day-29']")
+	private WebElement return_date;
+	
+	@FindBy(xpath ="//div[@data-testid='home-page-flight-cta']")
+	private WebElement search_flight;
+	
+	@FindBy(xpath ="//div[@data-testid='continue-search-page-cta']")
+	private WebElement continue_booking;
+	
+	@FindBy(xpath = "(//span[@class='css-76zvg2 css-16my406 r-homxoj r-1s6pnzw'])[1]")
+	private WebElement searchResultText;
+
+	@FindBy(xpath = "(//div[contains(.,'Round Trip')])[9]")
+	private WebElement searchResultRoundTripText;
+
+	@FindBy(xpath = "//div[text()='Please select a date for the return trip']")
+	private WebElement roundTripTextErrorText;
+
+	@FindBy(xpath = "//div[@class='css-1dbjc4n r-1d09ksm r-1inuy60 r-1qxgc49']")
+	private WebElement formElement;
+
+	@FindBy(xpath = "//div[@class='css-1dbjc4n r-1d09ksm r-1inuy60 r-1qxgc49']")
+	private WebElement onewaytriperrorText;
+	
+	public search_flight() {
+		PageFactory.initElements(driver, this);
+	}
+
+
+	public String managebookingtext() {
+		return manage_booking.getText();
+	}
+	
+	public String flight_status() {
+		return flight_status.getText();
+	}
+	
+	public String checkin() {
+		return checkin.getText();
+	}
+
+	public String onewaytripText() {
+		return searchResultText.getText();
+	}
+
+	public String triperrorText() {
+		return onewaytriperrorText.getText();
+	}
+	
+	public String roundtripText() {
+		return searchResultRoundTripText.getText();
+	}
+	
+	public void checkNavigationTabs() {
+		String checkinText = checkin.getText();
+		Assert.assertEquals(checkinText, "Check-In");
+		String flightstatustext = flight_status.getText();
+		Assert.assertEquals(flightstatustext, "Flight Status");
+		String managebookingtext = manage_booking.getText();
+		Assert.assertEquals(managebookingtext, "Manage Booking");
+	}
+	
+	public void oneway_booking()  {
+		
+		oneway_trip.click();
+		from_city.sendKeys("HYD");
+		to_city.sendKeys("DEL");
+		departure.click();	
+		departure_date.click();
+		search_flight.click();
+		wait(searchResultText);
+	}
+	
+	public void round_trip_booking() throws InterruptedException {
+		
+		round_trip.click();
+		from_city.sendKeys("HYD");
+		to_city.sendKeys("DEL");
+		wait(departure);
+		departure.click();
+		System.out.println("HI");
+		wait(departure_date);
+		departure_date.click();
+		System.out.println("Hello");
+		System.out.println(driver.getPageSource());
+		returnback.click();
+		return_date.click();
+		search_flight.click();
+		wait(searchResultText);
+	}
+	
+	public void invalid_booking() {
+		
+		oneway_trip.click();
+		from_city.clear();
+		to_city.clear();
+		search_flight.click();
+		wait(onewaytriperrorText);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+}

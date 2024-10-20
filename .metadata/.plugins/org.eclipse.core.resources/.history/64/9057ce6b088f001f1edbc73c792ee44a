@@ -1,0 +1,31 @@
+package testcases;
+import java.io.IOException;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import base.basepage;
+import pages.search_flight;
+public class invalid_booking extends basepage {
+	
+	@BeforeTest
+	public void testDetails() {
+		testName = "TC009_RoundtripFlightSearchInvalid";
+		testDescription = "Searching for flight on Spicejet website for round trip";
+		testAuthor = "Santosh Sonawane";
+	}
+
+	@Test
+	public void Invalid_booking() throws InterruptedException, IOException {
+		search_flight bookingpage = new search_flight();
+		bookingpage.invalid_booking();
+		Assert.assertEquals(bookingpage.roundtripText(), "Please select a date for the return trip");
+		takeScreenshot("invalid booking");
+		if (bookingpage.roundtripText().contains("Please select a date for the return trip")) {
+			test.pass("Round trip Flight search with invalid search deatils test passed");
+		} else
+			test.fail("Round trip Flight search with invalid search deatils test failed");
+	}
+
+}

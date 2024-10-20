@@ -1,0 +1,48 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class passenger_details {
+	
+	@FindBy(xpath = "//div[@data-testid='title-contact-detail-card']")
+	private WebElement title;
+	
+	@FindBy(xpath = "//div[contains(text(),'Mr')]")
+	private WebElement titleSelect;
+	
+	@FindBy(xpath = "//input[@data-testid='first-inputbox-contact-details']")
+	private WebElement firstName;
+
+	@FindBy(xpath = "//input[@data-testid='last-inputbox-contact-details']")
+	private WebElement lastname;
+
+	@FindBy(xpath = "//input[@data-testid='contact-number-input-box']")
+	private WebElement phone;
+
+	@FindBy(xpath = "//input[@data-testid='emailAddress-inputbox-contact-details']")
+	private WebElement email;
+
+	@FindBy(xpath = "//input[@data-testid='city-inputbox-contact-details']")
+	private WebElement city;
+	
+	@FindBy(xpath = "//div[contains(text(),'I am flying as the primary passenger')]")
+	private WebElement primary_passenger_agree;
+	
+	@FindBy(xpath= "//div[@data-testid='traveller-info-continue-cta']")
+	private WebElement continue_booking;
+	
+	@FindBy(xpath ="//div[@data-testid='add-ons-continue-footer-button']")
+	private WebElement redirect_to_pay;
+	
+	@FindBy(xpath ="//div[@data-testid='common-proceed-to-pay']")
+	private WebElement proceed_to_pay;
+	
+	@FindBy(id="payment_form_card_number_error")
+	private WebElement card_error;
+	
+	@FindBy(id = "at_addon_close_icon")
+	private WebElement closebutton;
+	
+
+}

@@ -1,0 +1,31 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class passenger_details {
+	
+	@FindBy(xpath = "//div[@data-testid='title-contact-detail-card']")
+	private WebElement title;
+	
+	@FindBy(xpath = "//div[contains(text(),'Mr')]")
+	private WebElement titleSelect;
+	
+	@FindBy(xpath = "//input[@data-testid='first-inputbox-contact-details']")
+	private WebElement firstName;
+
+	@FindBy(xpath = "//input[@data-testid='last-inputbox-contact-details']")
+	private WebElement lastname;
+
+	@FindBy(xpath = "//input[@data-testid='contact-number-input-box']")
+	private WebElement phone;
+
+	@FindBy(xpath = "//input[@data-testid='emailAddress-inputbox-contact-details']")
+	private WebElement email;
+
+	@FindBy(xpath = "//input[@data-testid='city-inputbox-contact-details']")
+	private WebElement city;
+	
+	
+
+}

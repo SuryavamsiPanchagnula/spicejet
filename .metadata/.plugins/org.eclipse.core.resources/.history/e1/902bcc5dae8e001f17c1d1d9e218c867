@@ -1,0 +1,32 @@
+package testcases;
+
+import java.io.IOException;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import base.basepage;
+import pages.search_flight;
+public class two_way_booking extends basepage {
+	
+	@BeforeTest
+	public void testDetails() {
+		testName = "TC005_searchFlightforOneWayTrip";
+		testDescription = "Searching for flight on Spicejet website for one way trip";
+		testAuthor = "Santosh Sonawane";
+	}
+	
+	@Test
+	public void TC_two_way_booking() throws IOException {
+		search_flight bookingpage = new search_flight();
+		bookingpage.round_trip_booking();
+		Assert.assertTrue(bookingpage.roundtripText().contains("Hyderabad to Delhi"));
+		takeScreenshot("two_way_booking");
+		if (bookingpage.onewaytripText().contains("Hyderabad to Delhi")) {
+			test.pass("Oneway Flight search test passed");
+		} else
+			test.fail("Oneway Flight search test failed");
+	}
+
+}

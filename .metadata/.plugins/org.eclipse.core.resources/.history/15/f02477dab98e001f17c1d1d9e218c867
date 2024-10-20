@@ -1,0 +1,38 @@
+package testcases;
+
+import java.io.IOException;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import base.basepage;
+import pages.login;
+public class empty_value_login_submit extends basepage {
+	
+	@BeforeTest 
+	public void testDetails() {
+		
+		testName ="empty credentials login";
+		testDescription = "Verify, if user is getting error in directly submitting without credentials";
+		testAuthor ="Suryavamsi";
+		
+	}
+	
+	@Test
+	public void TC3_direct_submit() throws IOException {
+		
+		login direct_submit = new login();
+		direct_submit.directsubmit();
+		Assert.assertEquals(direct_submit.loginerror(),"Please enter a valid email address");
+		takeScreenshot("TC3_direct_submit");
+		if(direct_submit.loginerror().contains("Please neter a valid address")) {
+			test.pass("direct login submit condition is passed");
+		}
+		else {
+			test.fail("direct login submit condition is failed");
+		}
+		
+	}
+
+}

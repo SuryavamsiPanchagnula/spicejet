@@ -1,0 +1,58 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import base.basepage;
+public class signup extends basepage {
+
+	@FindBy(xpath="//div[contains(text(),'Signup')]") private WebElement Signuplink;
+	
+	@FindBy(xpath="//select[@class='form-control form-select ']//option[@value='MR']") private WebElement title;
+	
+	@FindBy(id="first_name") private WebElement firstname;
+	
+	@FindBy(id="last_name") private WebElement lastname;
+	
+	@FindBy(xpath ="//div[@class='col-sm-6 mt-30 px-sm-4']//select[@class='form-control form-select']//option[@value='IN']") 
+	private WebElement select_country;
+	
+	@FindBy(xpath ="//img[@alt='date']") private WebElement calendar;
+	
+	@FindBy(xpath ="//select[@class='react-datepicker__month-select']//option[@value='6']") private WebElement month;
+	
+	@FindBy(xpath = "//select[@class='react-datepicker__year-select']//option[@value='2000']") private WebElement year;
+	
+	@FindBy(xpath="//div[@class='react-datepicker__week']//div[@class='react-datepicker__day react-datepicker__day--009 react-datepicker__day--weekend']")
+	private WebElement date;
+	
+	@FindBy(xpath ="//input[@type='tel']") private WebElement phone;
+	
+	@FindBy(id ="email_id") private WebElement email;
+	
+	@FindBy(id="new-password") private WebElement password;
+	
+	@FindBy(id ="c-password") private WebElement confirmpassword;
+	
+	@FindBy(id= "defaultCheck1") private WebElement agree;
+	
+	@FindBy(xpath ="//div[@class=' mt-40 px-sm-4 col-auto']//button[@class='btn btn-red']") private WebElement submit;
+	
+	@FindBy(xpath ="//label[contains(text(),'OTP Verification')]") 
+	private WebElement confirmationtext;
+	
+	@FindBy(className ="btn btn-red plr-50") private WebElement Verify;
+	
+	@FindBy(className ="//small[@style='color: rgb(224, 40, 38); font-size: 12px;']") private WebElement otperror;
+	
+	
+	public String confirmationtext() {
+		return confirmationtext.getText();
+	}
+	
+	public String signuperror() {
+		return otperror.getText();
+	}
+	
+	
+}

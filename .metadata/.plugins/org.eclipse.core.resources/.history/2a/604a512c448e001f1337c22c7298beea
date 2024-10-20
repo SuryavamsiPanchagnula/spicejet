@@ -1,0 +1,43 @@
+package pages;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import base.basepage;
+
+public class booking extends basepage {
+	
+	@FindBy(xpath ="//div[contains(text(),'check-in')]") private WebElement checkin;
+	
+	@FindBy(xpath ="//div[contains(text(),'flight status')]") private WebElement flight_status;
+	
+	@FindBy(xpath ="//div[@data-testid='manage booking-horizontal-nav-tabs']") private WebElement manage_booking;
+	
+	@FindBy(xpath = "(//input[@type='text'])[1]")
+	private WebElement from_city;
+
+	@FindBy(xpath = "(//input[@type='text'])[2]")
+	private WebElement to_city;
+	
+	@FindBy(xpath ="//div[@data-testid='one-way-radio-button']")
+	private WebElement oneway_trip;
+	
+	@FindBy(xpath ="round-trip-radio-button")
+	private WebElement round_trip;
+	
+	@FindBy(xpath ="//div[@data-testid='departure-date-dropdown-label-test-id']")
+	private WebElement departure;
+	
+	@FindBy(xpath = "//div[@data-testid='undefined-month-November-2024']//div[@data-testid='undefined-calendar-day-15']")
+	private WebElement departure_date;
+	
+	@FindBy(xpath ="home-page-flight-cta")
+	private WebElement search_flight;
+	
+	@FindBy(xpath ="//div[@data-testid='continue-search-page-cta']")
+	private WebElement continue_booking;
+	
+	
+	
+	
+	
+}
